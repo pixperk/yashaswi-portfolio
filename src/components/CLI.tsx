@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { skills } from '@/lib/data'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Terminal } from 'lucide-react'
-import { projects, skills, experiences, education, blogs } from '@/lib/data'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { Section } from './Navigation'
 
 interface CLIProps {

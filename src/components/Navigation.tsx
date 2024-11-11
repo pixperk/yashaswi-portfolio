@@ -1,8 +1,5 @@
 "use client";
 
-import { useState, useEffect, SetStateAction, Dispatch } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Terminal } from "lucide-react"; // Import Terminal icon
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,6 +14,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown, Menu, Terminal, X } from "lucide-react"; // Import Terminal icon
+import { useEffect, useState } from "react";
 import { Switch } from "./ui/switch";
 
 export type Section =
