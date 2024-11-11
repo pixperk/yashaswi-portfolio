@@ -14,8 +14,8 @@ export const projects = [
     title: 'ChatSwift',
     description: 'A full stack real-time chat app focused on speed and usability with Upstash Redis.',
     image: '/chatswift.png?height=100&width=100',
-    github: 'https://github.com/username/chat-app',
-    live: 'https://chat-app.example.com',
+    github: 'https://github.com/pixperk/Next-Chat-Swift',
+    live: 'https://next-chat-swift.vercel.app/',
     techStack: 'Next.js 14, Upstash Redis, React, TypeScript, Tailwind CSS'
   }
 ];
