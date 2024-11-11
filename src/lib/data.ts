@@ -3,7 +3,7 @@ export const projects = [
     id: 1, 
     title: 'PingPanda', 
     description: 'A real-time SaaS monitoring app that delivers alerts directly to your Discord.',
-    image: '/pingpanda.png?height=100&width=100', 
+    image: '/pingPanda.png?height=100&width=100', 
     github: 'https://github.com/pixperk/ping-panda', 
     live: 'https://ping-panda-theta.vercel.app',
     techStack: 'Next.js, Hono (Backend Framework), Tailwind CSS, ShadCN, PostgreSQL, Prisma ORM, React Query, Stripe Integration'
