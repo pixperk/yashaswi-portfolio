@@ -3,17 +3,17 @@ export const projects = [
     id: 1, 
     title: 'PingPanda', 
     description: 'A real-time SaaS monitoring app that delivers alerts directly to your Discord.',
-    image: '/pingpanda-placeholder.svg?height=100&width=100', 
-    github: 'https://github.com/username/pingpanda', 
-    live: 'https://pingpanda.example.com',
+    image: '/pingpanda.png?height=100&width=100', 
+    github: 'https://github.com/pixperk/ping-panda', 
+    live: 'https://ping-panda-theta.vercel.app',
     techStack: 'Next.js, Hono (Backend Framework), Tailwind CSS, ShadCN, PostgreSQL, Prisma ORM, React Query, Stripe Integration'
   },
 
   {
     id: 3,
-    title: 'Real-Time Chatting Application',
+    title: 'ChatSwift',
     description: 'A full stack real-time chat app focused on speed and usability with Upstash Redis.',
-    image: '/chat-app-placeholder.svg?height=100&width=100',
+    image: '/chatswift.png?height=100&width=100',
     github: 'https://github.com/username/chat-app',
     live: 'https://chat-app.example.com',
     techStack: 'Next.js 14, Upstash Redis, React, TypeScript, Tailwind CSS'
