@@ -19,7 +19,7 @@ export default function ContactSection({ theme }: { theme: 'retro' | 'sunset' })
           <TwitterIcon className="w-6 h-6" />
         </motion.a>
         <motion.a
-          href="https://github.com/yashaswi-mishra"
+          href="https://github.com/pixperk"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.2, rotate: 360 }}
@@ -28,7 +28,7 @@ export default function ContactSection({ theme }: { theme: 'retro' | 'sunset' })
           <GithubIcon className="w-6 h-6" />
         </motion.a>
         <motion.a
-          href="https://linkedin.com/in/yashaswi-mishra"
+          href="https://www.linkedin.com/in/yashaswi-kumar-mishra-459a53285/"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.2, rotate: 360 }}
@@ -37,7 +37,7 @@ export default function ContactSection({ theme }: { theme: 'retro' | 'sunset' })
           <LinkedinIcon className="w-6 h-6" />
         </motion.a>
         <motion.a
-          href="mailto:yashaswi@example.com"
+          href="mailto:mishrayashaswikumar@gmail.com"
           whileHover={{ scale: 1.2, rotate: 360 }}
           className={`text-gray-400 hover:text-white ${theme === 'retro' ? 'bg-gray-800' : 'bg-gray-700'} p-3 rounded-full`}
         >
