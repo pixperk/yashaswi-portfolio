@@ -8,6 +8,16 @@ export const projects = [
     live: 'https://ping-panda-theta.vercel.app',
     techStack: 'Next.js, Hono (Backend Framework), Tailwind CSS, ShadCN, PostgreSQL, Prisma ORM, React Query, Stripe Integration'
   },
+  {
+    id: 2,
+    title: 'Bud Auction',
+    description: 'A dynamic auction platform where users can place bids, track auctions in real-time, and receive notifications for bid updates. Features include bid validation, real-time updates, and user-friendly design.',
+    image: '/budauction.png?height=100&width=100',
+    github: 'https://github.com/pixperk/bud-auction',
+    live: 'https://bud-auction.vercel.app/',
+    techStack: 'Next.js, TypeScript, Drizzle, PostgreSQL, Tailwind CSS, Knock Workflow, Vercel'
+  }
+  ,
 
   {
     id: 3,
