@@ -1,5 +1,4 @@
 
-
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -60,7 +59,7 @@ export default function Portfolio() {
                 className="min-h-[calc(100vh-12rem)] flex items-center justify-center"
               >
                 <div className="w-full">
-                  {activeSection === 'intro' && <IntroSection theme={theme} />}
+                  {activeSection === 'intro' && <IntroSection theme={theme} setActiveSection={setActiveSection} />}
                   {activeSection === 'projects' && <ProjectsSection theme={theme} />}
                   {activeSection === 'skills' && <SkillsSection theme={theme} />}
                   {activeSection === 'experience' && <ExperienceSection theme={theme} />}

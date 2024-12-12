@@ -1,10 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronDownIcon } from 'lucide-react'
+import { ChevronDownIcon, Download, Briefcase, FolderOpen } from 'lucide-react'
 import Image from 'next/image'
+import { Section } from '../Navigation'
+import { Button } from '@/components/ui/button'
 
-export default function IntroSection({ theme = 'retro' }: { theme?: 'retro' | 'sunset' }) {
+interface IntroProps {
+  setActiveSection: (section: Section) => void
+  theme?: 'retro' | 'sunset'
+}
+
+export default function IntroSection({ setActiveSection, theme = 'retro' }: IntroProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
       <motion.div
@@ -51,18 +58,67 @@ export default function IntroSection({ theme = 'retro' }: { theme?: 'retro' | 's
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className={`max-w-2xl text-gray-300 leading-relaxed ${theme === 'retro' ? 'font-mono' : 'font-sans'}`}
+        className={`max-w-2xl text-gray-300 leading-relaxed mb-8 ${theme === 'retro' ? 'font-mono' : 'font-sans'}`}
       >
-      Passionate about creating efficient, innovative solutions to challenging problems. With skills across both front-end and back-end, I deliver clean, scalable code that drives powerful, engaging digital experiences. 
+        Passionate about creating efficient, innovative solutions to challenging problems. With skills across both front-end and back-end, I deliver clean, scalable code that drives powerful, engaging digital experiences. 
       </motion.p>
+      
+      {/* New buttons section */}
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.8 }}
+        className="flex flex-wrap justify-center gap-4 mb-12"
+      >
+        <Button
+          variant={theme === 'retro' ? 'outline' : 'default'}
+          className={`${
+            theme === 'retro'
+              ? 'bg-green-400 text-black hover:bg-green-500'
+              : 'bg-orange-400 text-white hover:bg-orange-500'
+          }`}
+          onClick={() => setActiveSection('projects')}
+        >
+          <FolderOpen className="mr-2 h-4 w-4" />
+          View Projects
+        </Button>
+        <Button
+          variant={theme === 'retro' ? 'outline' : 'default'}
+          className={`${
+            theme === 'retro'
+              ? 'bg-green-400 text-black hover:bg-green-500'
+              : 'bg-orange-400 text-white hover:bg-orange-500'
+          }`}
+          onClick={() => {
+            // Add logic to download resume
+            console.log('Downloading resume...')
+          }}
+        >
+          <Download className="mr-2 h-4 w-4" />
+          Download Resume
+        </Button>
+        <Button
+          variant={theme === 'retro' ? 'outline' : 'default'}
+          className={`${
+            theme === 'retro'
+              ? 'bg-green-400 text-black hover:bg-green-500'
+              : 'bg-orange-400 text-white hover:bg-orange-500'
+          }`}
+          onClick={() => setActiveSection('contact')}
+        >
+          <Briefcase className="mr-2 h-4 w-4" />
+          Hire Me
+        </Button>
+      </motion.div>
+
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="mt-12"
+        className="mt-4"
       >
         <ChevronDownIcon className={`w-6 h-6 ${theme === 'retro' ? 'text-green-400' : 'text-orange-400'}`} />
       </motion.div>
-      <div>View Projects</div>
     </div>
   )
 }
+
