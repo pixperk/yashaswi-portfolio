@@ -52,15 +52,23 @@ export const projects = [
 
 export const skills = [
   { name: 'React', level: 90 },
+  { name: 'Next.js', level: 90 },
+  { name: 'TypeScript', level: 85 },
   { name: 'Node.js', level: 85 },
-  { name: 'TypeScript', level: 80 },
-  { name: 'Express', level: 80 },
-  { name: 'GraphQL', level: 70 },
-  { name: 'MongoDB', level: 80 },
-  { name: 'PostgreSQL', level: 70 },
+  { name: 'Express.js', level: 85 },
   { name: 'Prisma', level: 85 },
+  { name: 'MongoDB', level: 80 },
+  { name: 'PostgreSQL', level: 80 },
+  { name: 'Redis', level: 75 },
+  { name: 'React Query', level: 80 },
+  { name: 'tRPC', level: 75 },
+  { name: 'Tailwind CSS', level: 85 },
+  { name: 'Redux', level: 80 },
+  { name: 'Zod', level: 80 },
+  { name: 'Docker', level: 70 },
+  { name: 'GraphQL', level: 40 },
+];
 
-]
 
 export const experiences = [
  
