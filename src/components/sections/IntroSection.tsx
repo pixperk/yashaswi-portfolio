@@ -62,6 +62,7 @@ export default function IntroSection({ theme = 'retro' }: { theme?: 'retro' | 's
       >
         <ChevronDownIcon className={`w-6 h-6 ${theme === 'retro' ? 'text-green-400' : 'text-orange-400'}`} />
       </motion.div>
+      <div>View Projects</div>
     </div>
   )
 }

@@ -10,6 +10,25 @@ export const projects = [
   },
   {
     id: 2,
+    title: "Quill",
+    description: "A SaaS platform enabling users to chat with AI using the context of their uploaded PDFs. Built with a focus on performance, usability, and clean design.",
+    image: "/quill.png?height=100&width=100",
+    github: "https://github.com/pixperk/quill",
+    live: "https://quill-two-ochre.vercel.app/",
+    techStack: "Next.js, tRPC, Tailwind CSS, shadcn-ui, Prisma ORM, Pinecone, LangChain, Stripe, Zod, Kinde, TypeScript"
+  },
+  
+  {
+    id: 3,
+    title: "EcoCart",
+    description: "A collaborative eco-friendly shopping app designed to create AI-powered shopping lists, track environmental impact, and make sustainable choices easier.",
+    image: "/ecoCart.png?height=100&width=100",
+    github: "https://github.com/pixperk/eco-cart",
+    live: "https://eco-cart-liart.vercel.app/",
+    techStack: "Next.js (Frontend & Backend), Prisma ORM, PostgreSQL, Tailwind CSS, shadcn-ui",
+  },
+  {
+    id: 4,
     title: 'Bud Auction',
     description: 'A dynamic auction platform where users can place bids, track auctions in real-time, and receive notifications for bid updates. Features include bid validation, real-time updates, and user-friendly design.',
     image: '/budauction.png?height=100&width=100',
@@ -20,7 +39,7 @@ export const projects = [
   ,
 
   {
-    id: 3,
+    id: 5,
     title: 'ChatSwift',
     description: 'A full stack real-time chat app focused on speed and usability with Upstash Redis.',
     image: '/chatswift.png?height=100&width=100',
