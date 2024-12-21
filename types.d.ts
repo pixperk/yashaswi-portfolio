@@ -10,10 +10,12 @@ export type Project = {
     live: string;
   } 
   
-  export type Skill = {
-    name: string;
-    level: number;
-  } 
+  type SkillCategory = 'Languages' | 'Frameworks & Libraries' | 'Technologies & Tools';
+
+export type Skill =  {
+  name: string;
+  category: SkillCategory;
+}
   
   export type Experience = {
     id: number;

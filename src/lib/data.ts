@@ -51,22 +51,35 @@ export const projects = [
 
 
 export const skills = [
-  { name: 'React', level: 90 },
-  { name: 'Next.js', level: 90 },
-  { name: 'TypeScript', level: 85 },
-  { name: 'Node.js', level: 85 },
-  { name: 'Express.js', level: 85 },
-  { name: 'Prisma', level: 85 },
-  { name: 'MongoDB', level: 80 },
-  { name: 'PostgreSQL', level: 80 },
-  { name: 'Redis', level: 75 },
-  { name: 'React Query', level: 80 },
-  { name: 'tRPC', level: 75 },
-  { name: 'Tailwind CSS', level: 85 },
-  { name: 'Redux', level: 80 },
-  { name: 'Zod', level: 80 },
-  { name: 'Docker', level: 70 },
-  { name: 'GraphQL', level: 40 },
+  // Languages
+  { name: 'TypeScript', category: 'Languages' },
+  { name: 'JavaScript', category: 'Languages' },
+  { name: 'Node.js', category: 'Languages' },
+  { name: 'Rust', category: 'Languages' },
+  { name: 'C/C++', category: 'Languages' },
+  { name: 'Java', category: 'Languages' },
+
+  // Frameworks & Libraries
+  { name: 'React', category: 'Frameworks & Libraries' },
+  { name: 'Next.js', category: 'Frameworks & Libraries' },
+  { name: 'Express.js', category: 'Frameworks & Libraries' },
+  { name: 'Hono.js', category: 'Frameworks & Libraries' },
+  { name: 'Actix', category: 'Frameworks & Libraries' },
+  { name: 'Axum', category: 'Frameworks & Libraries' },
+  { name: 'Tailwind CSS', category: 'Frameworks & Libraries' },
+  { name: 'Redux', category: 'Frameworks & Libraries' },
+  { name: 'tRPC', category: 'Frameworks & Libraries' },
+
+  // Technologies & Tools
+  { name: 'PostgreSQL', category: 'Technologies & Tools' },
+  { name: 'Docker', category: 'Technologies & Tools' },
+  { name: 'Prisma ORM', category: 'Technologies & Tools' },
+  { name: 'Drizzle ORM', category: 'Technologies & Tools' },
+  { name: 'MongoDB', category: 'Technologies & Tools' },
+  { name: 'Redis', category: 'Technologies & Tools' },
+  { name: 'Kafka', category: 'Technologies & Tools' },
+  { name: 'Tanstack-Query', category: 'Technologies & Tools' },
+  { name: 'GraphQL', category: 'Technologies & Tools' },
 ];
 
 
