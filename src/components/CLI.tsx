@@ -1,4 +1,4 @@
-import { projects, skills } from "@/lib/data";
+import { projects } from "@/lib/data";
 import { AnimatePresence, motion } from "framer-motion";
 import { Terminal } from "lucide-react";
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
