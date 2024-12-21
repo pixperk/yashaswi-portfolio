@@ -114,7 +114,12 @@ export default function IntroSection({ setActiveSection, theme = 'retro' }: Intr
               transform hover:scale-105 hover:shadow-xl
             `}
             onClick={() => {
-              console.log('Downloading resume...')
+              const anchor = document.createElement('a');
+              anchor.href = '/resume.pdf'; 
+              anchor.download = 'Yashaswi_Kumar_Mishra_Resume.pdf';
+              document.body.appendChild(anchor);
+              anchor.click();
+              document.body.removeChild(anchor);
             }}
           >
             <Download className="mr-2 h-5 w-5" />

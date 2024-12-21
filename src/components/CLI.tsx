@@ -17,23 +17,26 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
     "Welcome to Yashaswi Kumar Mishra's Portfolio CLI!",
     "Type 'help' for a list of available commands.",
   ])
+  const [history, setHistory] = useState<string[]>([])
+  const [historyIndex, setHistoryIndex] = useState(-1)
   const inputRef = useRef<HTMLInputElement>(null)
   const outputRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus()
-    }
-    if (outputRef.current) {
-      outputRef.current.scrollTop = outputRef.current.scrollHeight
-    }
+    if (inputRef.current) inputRef.current.focus()
+    if (outputRef.current) outputRef.current.scrollTop = outputRef.current.scrollHeight
   }, [output])
 
   const handleCommand = (e: React.FormEvent) => {
     e.preventDefault()
-    const newOutput = [...output, `$ ${command}`]
+    const trimmedCommand = command.trim()
+    if (!trimmedCommand) return
 
-    switch (command.toLowerCase()) {
+    const newOutput = [...output, `$ ${trimmedCommand}`]
+    setHistory([...history, trimmedCommand])
+    setHistoryIndex(history.length + 1)
+
+    switch (trimmedCommand.toLowerCase()) {
       case 'help':
         newOutput.push(
           'Available commands:',
@@ -56,8 +59,8 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
       case 'education':
       case 'blogs':
       case 'contact':
-        setActiveSection(command.toLowerCase() as Section)
-        newOutput.push(`Navigated to ${command} section`)
+        setActiveSection(trimmedCommand.toLowerCase() as Section)
+        newOutput.push(`Navigated to ${trimmedCommand} section`)
         setTimeout(() => setCliMode(false), 1000)
         break
       case 'skills':
@@ -77,9 +80,13 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
       case 'resume':
         newOutput.push('Downloading resume...')
         setTimeout(() => {
+          const link = document.createElement('a')
+          link.href = '/resume.pdf' // Path to resume file in the public folder
+          link.download = 'resume.pdf'
+          link.click()
           newOutput.push('Resume downloaded successfully!')
           setOutput([...newOutput])
-        }, 2000)
+        }, 1000)
         break
       case 'clear':
         setOutput([])
@@ -90,11 +97,23 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
         setTimeout(() => setCliMode(false), 1000)
         break
       default:
-        newOutput.push(`Command not recognized: ${command}`)
+        newOutput.push(`Command not recognized: ${trimmedCommand}. Type 'help' for a list of available commands.`)
     }
 
     setOutput(newOutput)
     setCommand('')
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowUp') {
+      const newIndex = Math.max(0, historyIndex - 1)
+      setHistoryIndex(newIndex)
+      setCommand(history[newIndex] || '')
+    } else if (e.key === 'ArrowDown') {
+      const newIndex = Math.min(history.length, historyIndex + 1)
+      setHistoryIndex(newIndex)
+      setCommand(history[newIndex] || '')
+    }
   }
 
   return (
@@ -103,6 +122,8 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       className={`${theme === 'retro' ? 'bg-gray-900 border-green-400 font-mono' : 'bg-gray-800 border-orange-400 font-sans'} border-2 rounded-lg p-4 text-sm h-[calc(100vh-8rem)] flex flex-col`}
+      role="application"
+      aria-label="Portfolio CLI"
     >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
@@ -115,7 +136,7 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
           <div className="w-3 h-3 rounded-full bg-green-500"></div>
         </div>
       </div>
-      <div ref={outputRef} className="flex-grow overflow-y-auto mb-4 custom-scrollbar">
+      <div ref={outputRef} className="flex-grow overflow-y-auto mb-4 custom-scrollbar" role="log" aria-live="polite">
         <AnimatePresence>
           {output.map((line, index) => (
             <motion.div
@@ -138,6 +159,7 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
           type="text"
           value={command}
           onChange={(e) => setCommand(e.target.value)}
+          onKeyDown={handleKeyDown}
           className={`flex-grow bg-transparent focus:outline-none ${theme === 'retro' ? 'text-green-400' : 'text-orange-400'}`}
           placeholder="Type a command..."
         />
