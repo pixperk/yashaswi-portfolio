@@ -35,9 +35,6 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
   const maxPage = Math.ceil(categories.length / itemsPerPage);
 
   const currentCategory = categories[currentPage - 1];
-  const prevCategory = currentPage > 1 ? categories[currentPage - 2] : null;
-  const nextCategory = currentPage < maxPage ? categories[currentPage] : null;
-
   const nextPage = () => setCurrentPage((prev) => Math.min(prev + 1, maxPage));
   const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
@@ -46,9 +43,9 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const cardVariants = {
@@ -59,28 +56,17 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
       transition: {
         type: 'spring',
         stiffness: 100,
-        damping: 12
-      }
-    }
-  };
-
-  const skillVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 10
-      }
-    }
+        damping: 12,
+      },
+    },
   };
 
   return (
-    <div className={`container mx-auto px-4 py-16 min-h-screen flex flex-col justify-center ${theme === 'retro' ? 'bg-gray-900' : 'bg-gray-800'}`}>
-      <motion.h2 
-        className={`text-4xl md:text-5xl font-bold mb-12 text-center ${theme === 'retro' ? 'text-green-400 font-mono' : 'text-orange-400 font-serif'}`}
+    <div className="container mx-auto px-4 py-16 min-h-screen flex flex-col justify-center items-center">
+      <motion.h2
+        className={`text-4xl md:text-5xl font-bold mb-12 text-center ${
+          theme === 'retro' ? 'text-green-400 font-mono' : 'text-orange-400 font-serif'
+        }`}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -88,25 +74,29 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
         Technical Skills
       </motion.h2>
       <AnimatePresence mode="wait">
-        <motion.div 
+        <motion.div
           key={currentPage}
-          className="flex-grow flex flex-col justify-center"
+          className="w-full max-w-4xl flex flex-col justify-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           exit="hidden"
         >
           <motion.div
-            className={`${
-              theme === 'retro' ? 'bg-gray-800 border-green-400' : 'bg-gray-700 border-orange-400'
-            } p-6 rounded-lg shadow-lg border transition-all duration-300`}
+            className={`p-6 rounded-lg shadow-lg transition-all duration-300 ${
+              theme === 'retro' ? 'bg-gray-900' : 'bg-gray-800'
+            }`}
             variants={cardVariants}
           >
-            <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${theme === 'retro' ? 'text-green-400 font-mono' : 'text-orange-400 font-serif'}`}>
+            <h3
+              className={`text-2xl md:text-3xl font-bold mb-4 ${
+                theme === 'retro' ? 'text-green-400 font-mono' : 'text-orange-400 font-serif'
+              }`}
+            >
               {currentCategory}
             </h3>
-            <motion.div 
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4"
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -114,72 +104,63 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
               {groupedSkills[currentCategory].map((skill) => (
                 <motion.div
                   key={skill.name}
-                  className={`flex items-center p-2 rounded-md ${
-                    theme === 'retro' ? 'bg-gray-700' : 'bg-gray-600'
+                  className={`flex items-center p-4 rounded-md shadow-sm ${
+                    theme === 'retro' ? 'bg-gray-800 text-green-200' : 'bg-gray-700 text-orange-200'
                   }`}
-                  variants={skillVariants}
+                  variants={cardVariants}
                 >
-                  <CodeIcon className={`w-5 h-5 mr-2 ${theme === 'retro' ? 'text-green-400' : 'text-orange-400'}`} />
-                  <span className={`text-sm ${theme === 'retro' ? 'font-mono text-green-200' : 'font-sans text-orange-200'}`}>
-                    {skill.name}
-                  </span>
+                  <CodeIcon
+                    className={`w-5 h-5 mr-2 ${
+                      theme === 'retro' ? 'text-green-400' : 'text-orange-400'
+                    }`}
+                  />
+                  <span className="text-base">{skill.name}</span>
                 </motion.div>
               ))}
             </motion.div>
           </motion.div>
         </motion.div>
       </AnimatePresence>
-      <motion.div 
+      <motion.div
         className="flex justify-center items-center mt-8 space-x-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
-        <div className="flex items-center">
-          <Button
-            onClick={prevPage}
-            disabled={currentPage === 1}
-            variant="outline"
-            size="icon"
-            className={`${
-              theme === 'retro' 
-                ? 'text-green-400 bg-gray-800 border-green-400 hover:bg-green-900 hover:text-green-200'
-                : 'text-orange-400 bg-gray-700 border-orange-400 hover:bg-orange-900 hover:text-orange-200'
-            }`}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          {prevCategory && (
-            <span className={`ml-2 text-sm ${theme === 'retro' ? 'text-green-400' : 'text-orange-400'}`}>
-              {prevCategory}
-            </span>
-          )}
-        </div>
-        <span className={`text-lg ${theme === 'retro' ? 'font-mono text-green-400' : 'font-sans text-orange-400'}`}>
+        <Button
+          onClick={prevPage}
+          disabled={currentPage === 1}
+          variant="outline"
+          size="icon"
+          className={`${
+                      theme === 'retro' 
+                        ? 'text-white bg-green-500  border-green-700 hover:bg-green-900 hover:text-green-200'
+                        : 'text-white bg-orange-500 border-orange-700 hover:bg-orange-900 hover:text-orange-200'
+                    }`}
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        <span
+          className={`text-lg ${
+            theme === 'retro' ? 'font-mono text-green-400' : 'font-sans text-orange-400'
+          }`}
+        >
           {currentPage} / {maxPage}
         </span>
-        <div className="flex items-center">
-          {nextCategory && (
-            <span className={`mr-2 text-sm ${theme === 'retro' ? 'text-green-400' : 'text-orange-400'}`}>
-              {nextCategory}
-            </span>
-          )}
-          <Button
-            onClick={nextPage}
-            disabled={currentPage === maxPage}
-            variant="outline"
-            size="icon"
-            className={`${
-              theme === 'retro' 
-                ? 'text-green-400 bg-gray-800 border-green-400 hover:bg-green-900 hover:text-green-200'
-                : 'text-orange-400 bg-gray-700 border-orange-400 hover:bg-orange-900 hover:text-orange-200'
-            }`}
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
+        <Button
+          onClick={nextPage}
+          disabled={currentPage === maxPage}
+          variant="outline"
+          size="icon"
+          className={`${
+                      theme === 'retro' 
+                        ? 'text-white bg-green-500  border-green-700 hover:bg-green-900 hover:text-green-200'
+                        : 'text-white bg-orange-500 border-orange-700 hover:bg-orange-900 hover:text-orange-200'
+                    }`}
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
       </motion.div>
     </div>
-  )
+  );
 }
-
