@@ -192,7 +192,7 @@ export default function CLI({ theme, setActiveSection, setTheme, setCliMode }: C
           <Terminal className="w-5 h-5 mr-2" />
           <span className="font-bold">Portfolio CLI</span>
         </div>
-        <div className="text-xs">Press 'Tab' to autocomplete</div>
+        <div className="text-xs">Press &apos;Tab&apos; to autocomplete</div>
       </div>
       <div ref={outputRef} className="flex-grow overflow-y-auto mb-4 custom-scrollbar" role="log" aria-live="polite">
         <AnimatePresence>
