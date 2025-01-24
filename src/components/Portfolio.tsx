@@ -1,4 +1,3 @@
-
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -13,7 +12,7 @@ import ExperienceSection from './sections/ExperienceSection'
 import EducationSection from './sections/EducationSection'
 import BlogsSection from './sections/BlogsSection'
 import ContactSection from './sections/ContactSection'
-import Navigation, { Section } from './Navigation' 
+import Navigation, { Section } from './Navigation'
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState<Section>('intro')
@@ -23,28 +22,30 @@ export default function Portfolio() {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+      requestAnimationFrame(() => setMousePosition({ x: e.clientX, y: e.clientY }))
     }
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
 
   return (
-    <div className={`min-h-screen flex flex-col ${
-      theme === 'retro' 
-        ? 'bg-gray-900 font-mono' 
-        : 'bg-gradient-to-br from-gray-900 via-purple-900 to-orange-900 font-sans'
-    } text-gray-100`}>
+    <div
+      className={`min-h-screen flex flex-col ${
+        theme === 'retro'
+          ? 'bg-gray-900 font-mono'
+          : 'bg-gradient-to-br from-gray-900 via-purple-900 to-orange-900 font-sans'
+      } text-gray-100`}
+    >
       <CursorFollower mousePosition={mousePosition} theme={theme} />
-      <Navigation 
-        activeSection={activeSection} 
-        setActiveSection={setActiveSection} 
+      <Navigation
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
         theme={theme}
         setTheme={setTheme}
         cliMode={cliMode}
         setCliMode={setCliMode}
       />
-      <main className="flex-grow flex items-center justify-center px-4 py-20">
+      <main className="flex-grow flex items-center justify-center px-4 py-10">
         <div className="w-full max-w-4xl">
           {cliMode ? (
             <CLI theme={theme} setActiveSection={setActiveSection} setTheme={setTheme} setCliMode={setCliMode} />
@@ -72,8 +73,12 @@ export default function Portfolio() {
           )}
         </div>
       </main>
-      <footer className={`text-center py-6 text-gray-500 text-sm ${theme === 'retro' ? 'font-mono' : 'font-sans'}`}>
-        © 2024 Yashaswi Kumar Mishra. All rights reserved.
+      <footer
+        className={`text-center py-6 text-gray-500 text-sm ${
+          theme === 'retro' ? 'font-mono' : 'font-sans'
+        }`}
+      >
+        © {new Date().getFullYear()} Yashaswi Kumar Mishra. All rights reserved.
       </footer>
     </div>
   )

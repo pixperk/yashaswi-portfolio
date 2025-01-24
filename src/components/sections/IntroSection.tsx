@@ -1,190 +1,263 @@
-'use client'
+"use client";
 
-import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronDownIcon, Download, Briefcase } from 'lucide-react'
-import Image from 'next/image'
-import { Section } from '../Navigation'
-import { Button } from '@/components/ui/button'
+import { useCallback } from "react";
+import { motion } from "framer-motion";
+import { Download, Briefcase, Twitter, Github, Linkedin } from "lucide-react";
+import Image from "next/image";
+import type { Section } from "../Navigation";
+import { Button } from "@/components/ui/button";
 
 interface IntroProps {
-  setActiveSection: (section: Section) => void
-  theme?: 'retro' | 'sunset'
+  setActiveSection: (section: Section) => void;
+  theme?: "retro" | "sunset";
 }
 
-export default function IntroSection({ setActiveSection, theme = 'retro' }: IntroProps) {
-  const projectsRef = useRef<HTMLDivElement | null>(null)
+const IntroSection = ({ setActiveSection, theme = "retro" }: IntroProps) => {
+  const handleSectionChange = useCallback(
+    (section: Section) => {
+      setActiveSection(section);
+    },
+    [setActiveSection]
+  );
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setActiveSection('projects')
-        }
+  const handleResumeDownload = useCallback(() => {
+    const anchor = document.createElement("a");
+    anchor.href = "/resume.pdf";
+    anchor.download = "Yashaswi_Kumar_Mishra_Resume.pdf";
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
-      {
-        root: null,
-        threshold: 0.5,
-      }
-    )
+    },
+  };
 
-    if (projectsRef.current) {
-      observer.observe(projectsRef.current)
-    }
-
-    return () => {
-      if (projectsRef.current) {
-        observer.unobserve(projectsRef.current)
-      }
-    }
-  }, [setActiveSection])
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-center min-h-screen text-center p-4">
+    <div className="relative min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
         <motion.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          className={`relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden mb-8 ${
-            theme === 'retro' ? 'border-4 border-green-400' : 'border-4 border-orange-400'
-          }`}
+          className="flex flex-col lg:flex-row justify-between items-start"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <Image
-            src="/profile.jpg"
-            alt="Profile"
-            layout="fill"
-            className="object-cover"
-            priority
-          />
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-tr from-black/50 to-transparent"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          />
-        </motion.div>
-        <motion.h1
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className={`text-4xl md:text-6xl font-bold mb-4 ${
-            theme === 'retro' ? 'text-green-400 font-mono' : 'text-orange-400 font-serif'
-          }`}
-        >
-          Yashaswi Kumar Mishra
-        </motion.h1>
-        <motion.h2
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className={`text-xl md:text-2xl text-gray-400 mb-8 ${
-            theme === 'retro' ? 'font-mono' : 'font-sans'
-          }`}
-        >
-          Full Stack TypeScript Developer
-        </motion.h2>
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className={`max-w-2xl text-gray-300 leading-relaxed mb-12 ${
-            theme === 'retro' ? 'font-mono' : 'font-sans'
-          }`}
-        >
-          Passionate about creating efficient, innovative solutions to challenging problems. With skills across both front-end and back-end, I deliver clean, scalable code that drives powerful, engaging digital experiences.
-        </motion.p>
+          <div className="flex-1 max-w-3xl">
+            <motion.div variants={itemVariants}>
+              <h1
+                className={`text-4xl md:text-6xl font-bold mb-4 ${
+                  theme === "retro" ? "font-mono" : "font-sans"
+                }`}
+              >
+                Hey! I&apos;m{" "}
+                <span
+                  className={
+                    theme === "retro" ? "text-green-400" : "text-orange-400"
+                  }
+                >
+                  Yashaswi Kumar Mishra
+                </span>
+              </h1>
+            </motion.div>
 
-        {/* Updated Buttons */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="flex flex-wrap justify-center gap-6 mb-16"
-        >
-          <Button
-            variant="default"
-            size="lg"
-            className={`
-              text-lg py-6 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out
-              ${theme === 'retro'
-                ? 'bg-green-400 text-black hover:bg-green-500 hover:shadow-green-300/50'
-                : 'bg-orange-400 text-white hover:bg-orange-500 hover:shadow-orange-300/50'
-              }
-              transform hover:scale-105 hover:shadow-xl
-            `}
-            onClick={() => {
-              const anchor = document.createElement('a');
-              anchor.href = '/resume.pdf'; 
-              anchor.download = 'Yashaswi_Kumar_Mishra_Resume.pdf';
-              document.body.appendChild(anchor);
-              anchor.click();
-              document.body.removeChild(anchor);
-            }}
-          >
-            <Download className="mr-2 h-5 w-5" />
-            Download Resume
-          </Button>
-          <Button
-            variant="default"
-            size="lg"
-            className={`
-              text-lg py-6 px-8 rounded-full shadow-lg transition-all duration-300 ease-in-out
-              ${theme === 'retro'
-                ? 'bg-transparent text-green-400 border-2 border-green-400 hover:bg-green-400 hover:text-black'
-                : 'bg-transparent text-orange-400 border-2 border-orange-400 hover:bg-orange-400 hover:text-black'
-              }
-              transform hover:scale-105 hover:shadow-xl
-            `}
-            onClick={() => setActiveSection('contact')}
-          >
-            <Briefcase className="mr-2 h-5 w-5" />
-            Hire Me
-          </Button>
-        </motion.div>
+            <motion.div variants={itemVariants}>
+              <h2
+                className={`text-2xl md:text-3xl mb-8 text-gray-400 ${
+                  theme === "retro" ? "font-mono" : "font-sans"
+                }`}
+              >
+                and I&apos;m a full stack TypeScript developer.
+              </h2>
+            </motion.div>
 
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="mt-4"
-        >
-          <ChevronDownIcon className={`w-6 h-6 ${theme === 'retro' ? 'text-green-400' : 'text-orange-400'}`} />
-        </motion.div>
-      </div>
+            <motion.div variants={itemVariants}>
+              <p
+                className={`text-gray-400 text-lg mb-6 leading-relaxed ${
+                  theme === "retro" ? "font-mono" : "font-sans"
+                }`}
+              >
+                I&apos;ve been passionate about technology since childhood. What
+                started with curiosity about how computers work has evolved
+                into a deep expertise in modern web development. Today, I craft
+                scalable applications that combine elegant design with robust
+                functionality.
+              </p>
+            </motion.div>
 
-      {/* Projects Skeleton Section */}
-      <div ref={projectsRef} className="h-screen">
-        <h2 className={`text-3xl font-bold mb-8 text-center ${theme === 'retro' ? 'text-green-400 font-mono' : 'text-orange-400 font-serif'}`}>
-          Featured Projects
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[...Array(4)].map((_, index) => (
-            <div
-              key={index}
-              className={`${
-                theme === 'retro' ? 'bg-gray-800 border-green-400' : 'bg-gray-700 border-orange-400'
-              } p-6 rounded-lg shadow-lg border`}
+            <motion.div variants={itemVariants}>
+              <p
+                className={`text-gray-400 text-lg mb-8 leading-relaxed ${
+                  theme === "retro" ? "font-mono" : "font-sans"
+                }`}
+              >
+                When I&apos;m not coding, you&apos;ll find me exploring new
+                technologies, contributing to open-source projects, or sharing
+                knowledge with the developer community. I believe in writing
+                clean, maintainable code that solves real-world problems.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="hidden lg:flex gap-4 mb-8"
             >
-              <div className="flex items-center mb-4">
-                <div className="w-[100px] h-[100px] bg-gray-600 rounded-lg mr-4" />
-                <div className="h-6 bg-gray-600 rounded w-3/4" />
-              </div>
-              <div className="space-y-2">
-                <div className="h-4 bg-gray-600 rounded w-full" />
-                <div className="h-4 bg-gray-600 rounded w-5/6" />
-              </div>
-              <div className="flex justify-between items-center mt-4">
-                <div className="h-4 bg-gray-600 rounded w-1/3" />
-                <div className="flex space-x-2">
-                  <div className="w-5 h-5 bg-gray-600 rounded-full" />
-                  <div className="w-5 h-5 bg-gray-600 rounded-full" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
-  )
-}
+              <a
+                href="https://twitter.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full transition-colors ${
+                  theme === "retro"
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-orange-400 hover:text-orange-300"
+                }`}
+              >
+                <Twitter className="w-6 h-6" />
+              </a>
+              <a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full transition-colors ${
+                  theme === "retro"
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-orange-400 hover:text-orange-300"
+                }`}
+              >
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full transition-colors ${
+                  theme === "retro"
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-orange-400 hover:text-orange-300"
+                }`}
+              >
+                <Github className="w-6 h-6" />
+              </a>
+            </motion.div>
+          </div>
 
+          <motion.div
+            variants={itemVariants}
+            className="lg:ml-12 mt-12 lg:mt-0 relative"
+          >
+            <div
+              className={`w-64 h-64 rounded-3xl overflow-hidden ${
+                theme === "retro"
+                  ? "border-2 border-green-400"
+                  : "border-2 border-orange-400"
+              }`}
+            >
+              <Image
+                src="/profile.jpg"
+                alt="Yashaswi Kumar Mishra"
+                width={256}
+                height={256}
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            <motion.div
+              variants={itemVariants}
+              className="mt-6 flex flex-col gap-4"
+            >
+              <Button
+                variant="default"
+                size="lg"
+                className={`w-full py-6 rounded-full transition-all duration-300 hover:scale-105 ${
+                  theme === "retro"
+                    ? "bg-green-400 text-black hover:bg-green-500"
+                    : "bg-orange-400 text-white hover:bg-orange-500"
+                }`}
+                onClick={handleResumeDownload}
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Download Resume
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className={`w-full py-6 rounded-full transition-all duration-300 hover:scale-105 ${
+                  theme === "retro"
+                    ? "bg-transparent text-green-400 border-2 border-green-400 hover:bg-green-400 hover:text-black"
+                    : "bg-transparent text-orange-400 border-2 border-orange-400 hover:bg-orange-400 hover:text-black"
+                }`}
+                onClick={() => handleSectionChange("contact")}
+              >
+                <Briefcase className="mr-2 h-5 w-5" />
+                Hire Me
+              </Button>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex lg:hidden gap-4 mt-6 justify-center"
+            >
+              <a
+                href="https://twitter.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full transition-colors ${
+                  theme === "retro"
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-orange-400 hover:text-orange-300"
+                }`}
+              >
+                <Twitter className="w-6 h-6" />
+              </a>
+              <a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full transition-colors ${
+                  theme === "retro"
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-orange-400 hover:text-orange-300"
+                }`}
+              >
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 rounded-full transition-colors ${
+                  theme === "retro"
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-orange-400 hover:text-orange-300"
+                }`}
+              >
+                <Github className="w-6 h-6" />
+              </a>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default IntroSection;
