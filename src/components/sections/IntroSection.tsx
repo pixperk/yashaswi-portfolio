@@ -65,13 +65,15 @@ const IntroSection = ({ setActiveSection, theme = "retro" }: IntroProps) => {
             <motion.div variants={itemVariants}>
               <h1
                 className={`text-4xl md:text-6xl font-bold mb-4 ${
-                  theme === "retro" ? "font-mono" : "font-sans"
+                  theme === "retro" ? "font-mono text-3xl md:text-5xl" : "font-sans"
                 }`}
               >
                 Hey! I&apos;m{" "}
                 <span
                   className={
-                    theme === "retro" ? "text-green-400" : "text-orange-400"
+                    theme === "retro"
+                      ? "text-green-400 text-4xl md:text-6xl"
+                      : "text-orange-400"
                   }
                 >
                   Yashaswi Kumar Mishra
@@ -82,7 +84,7 @@ const IntroSection = ({ setActiveSection, theme = "retro" }: IntroProps) => {
             <motion.div variants={itemVariants}>
               <h2
                 className={`text-2xl md:text-3xl mb-8 text-gray-400 ${
-                  theme === "retro" ? "font-mono" : "font-sans"
+                  theme === "retro" ? "font-mono text-xl md:text-2xl" : "font-sans"
                 }`}
               >
                 and I&apos;m a full stack TypeScript developer.
@@ -92,27 +94,26 @@ const IntroSection = ({ setActiveSection, theme = "retro" }: IntroProps) => {
             <motion.div variants={itemVariants}>
               <p
                 className={`text-gray-400 text-lg mb-6 leading-relaxed ${
-                  theme === "retro" ? "font-mono" : "font-sans"
+                  theme === "retro" ? "font-mono text-[18px]" : "font-sans"
                 }`}
               >
                 I&apos;ve been passionate about technology since childhood. What
-                started with curiosity about how computers work has evolved
-                into a deep expertise in modern web development. Today, I craft
-                scalable applications that combine elegant design with robust
-                functionality.
+                started with curiosity about how computers work has evolved into a
+                deep expertise in modern web development. Today, I craft scalable
+                applications that combine elegant design with robust functionality.
               </p>
             </motion.div>
 
             <motion.div variants={itemVariants}>
               <p
                 className={`text-gray-400 text-lg mb-8 leading-relaxed ${
-                  theme === "retro" ? "font-mono" : "font-sans"
+                  theme === "retro" ? "font-mono text-[18px]" : "font-sans"
                 }`}
               >
                 When I&apos;m not coding, you&apos;ll find me exploring new
                 technologies, contributing to open-source projects, or sharing
-                knowledge with the developer community. I believe in writing
-                clean, maintainable code that solves real-world problems.
+                knowledge with the developer community. I believe in writing clean,
+                maintainable code that solves real-world problems.
               </p>
             </motion.div>
 

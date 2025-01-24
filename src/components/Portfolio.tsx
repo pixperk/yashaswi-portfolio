@@ -17,7 +17,7 @@ import Navigation, { Section } from './Navigation'
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState<Section>('intro')
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [theme, setTheme] = useState<'retro' | 'sunset'>('retro')
+  const [theme, setTheme] = useState<'retro' | 'sunset'>('sunset')
   const [cliMode, setCliMode] = useState(false)
 
   useEffect(() => {
