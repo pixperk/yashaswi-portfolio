@@ -1,29 +1,26 @@
-import { Database } from "lucide-react"
-import type { IconType } from "react-icons"
+import type { IconType } from "react-icons";
 import {
-  SiJavascript,
-  SiTypescript,
-  SiPython,
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiPostgresql,
-  SiDocker,
-  SiRedis,
-  SiGraphql,
-  SiRedux,
-  SiRust,
-  SiCplusplus,
-  SiOracle,
-  SiKnowledgebase,
-  SiTrpc,
-  SiPrisma,
-  SiApachekafka,
-  SiReactquery
-} from "react-icons/si"
+    SiApachekafka,
+    SiCplusplus,
+    SiDocker,
+    SiExpress,
+    SiGraphql,
+    SiJavascript,
+    SiMongodb,
+    SiNextdotjs,
+    SiNodedotjs,
+    SiOracle,
+    SiPostgresql,
+    SiPrisma,
+    SiReact,
+    SiReactquery,
+    SiRedis,
+    SiRedux,
+    SiRust,
+    SiTailwindcss,
+    SiTrpc,
+    SiTypescript
+} from "react-icons/si";
 
 import { DiDatabase } from "react-icons/di";
 

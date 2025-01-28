@@ -1,12 +1,12 @@
 "use client"
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { skills } from "@/lib/data"
 import { techLogos } from "@/lib/tech-logos"
-import { Button } from "@/components/ui/button"
-import { IconBaseProps, IconType } from "react-icons"
+import { AnimatePresence, motion } from "framer-motion"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
+import { IconType } from "react-icons"
 
 type Skill = {
   name: string
