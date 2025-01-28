@@ -7,6 +7,7 @@ import Image from "next/image"
 import { useCallback } from "react"
 import type { Section } from "../Navigation"
 
+
 interface IntroProps {
   setActiveSection: (section: Section) => void
   theme?: "retro" | "sunset"
@@ -94,9 +95,9 @@ const IntroSection = ({ setActiveSection, theme = "retro" }: IntroProps) => {
               <h2
                 className={`text-xl sm:text-2xl md:text-2xl mb-4 lg:mb-6 ${
                   theme === "retro"
-                    ? "font-mono text-lg sm:text-xl md:text-xl bg-green-400 text-black"
-                    : "font-sans bg-orange-400 text-white"
-                } inline-block px-2 py-1 rounded`}
+                    ? "font-mono text-lg sm:text-xl md:text-xl text-green-400"
+                    : "font-sans text-orange-400"
+                } inline-block px-1 py-1 rounded`}
               >
                 Full Stack TypeScript Developer
               </h2>

@@ -1,10 +1,12 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { CodeIcon, DatabaseIcon, CpuIcon, ChevronLeft, ChevronRight } from 'lucide-react'
-import { skills } from '@/lib/data'
-import { Button } from '@/components/ui/button'
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { skills } from "@/lib/data"
+import { techLogos } from "@/lib/tech-logos"
+import { Button } from "@/components/ui/button"
+import { IconBaseProps, IconType } from "react-icons"
 
 type Skill = {
   name: string
@@ -13,13 +15,6 @@ type Skill = {
 
 type GroupedSkills = {
   [key: string]: Skill[]
-}
-
-// Mapping categories to different icons
-const categoryIcons: Record<string, JSX.Element> = {
-  'Programming Languages': <CodeIcon className="w-6 h-6" />,
-  'Frameworks & Libraries': <DatabaseIcon className="w-6 h-6" />,
-  'Technologies & Tools': <CpuIcon className="w-6 h-6" />,
 }
 
 const groupSkillsByCategory = (skills: Skill[]): GroupedSkills => {
@@ -35,7 +30,7 @@ const groupSkillsByCategory = (skills: Skill[]): GroupedSkills => {
 const groupedSkills = groupSkillsByCategory(skills)
 const categories = Object.keys(groupedSkills)
 
-export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) {
+export default function SkillsSection({ theme }: { theme: "retro" | "sunset" }) {
   const [currentPage, setCurrentPage] = useState(1)
 
   const itemsPerPage = 1
@@ -45,32 +40,27 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
   const nextPage = () => setCurrentPage((prev) => Math.min(prev + 1, maxPage))
   const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1))
 
-  return (
-    <div className="container mx-auto px-6 py-20 min-h-screen flex flex-col items-center space-y-10">
-      <motion.h2
-        className={`text-5xl font-extrabold text-center tracking-wide drop-shadow-lg ${
-          theme === 'retro' ? 'text-green-400 font-mono' : 'text-orange-400 font-serif'
-        }`}
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        Technical Skills
-      </motion.h2>
+  const baseTextColor = theme === "retro" ? "text-green-400" : "text-orange-400"
+  const baseBgColor = theme === "retro" ? "bg-gray-800" : "bg-gray-900"
+  const hoverBgColor = theme === "retro" ? "hover:bg-gray-700" : "hover:bg-gray-800"
+  const borderColor = theme === "retro" ? "border-green-500" : "border-orange-500"
 
-      <div className="relative w-full max-w-5xl flex flex-col items-center">
+  return (
+    <div className="container mx-auto px-4 py-16 min-h-screen flex flex-col items-center justify-center space-y-12">
+     
+
+      <div className="w-full max-w-5xl">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
-            className="w-full bg-opacity-80 backdrop-blur-lg rounded-2xl shadow-lg p-10 transition-all duration-500 overflow-hidden flex flex-col items-center border border-gray-700"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
+            className="w-full"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
           >
             <motion.h3
-              className={`text-3xl font-bold text-center border-b-4 pb-2 px-6 ${
-                theme === 'retro' ? 'text-green-300 border-green-500' : 'text-orange-300 border-orange-500'
-              }`}
+              className={`text-2xl md:text-3xl font-semibold text-center mb-8 ${baseTextColor}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -79,24 +69,29 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
             </motion.h3>
 
             <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ staggerChildren: 0.1 }}
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ staggerChildren: 0.05, delayChildren: 0.1 }}
             >
-              {groupedSkills[currentCategory].map((skill) => (
-                <motion.div
-                  key={skill.name}
-                  className={`flex items-center space-x-4 px-6 py-4 rounded-lg shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-                    theme === 'retro' ? 'bg-gray-900 text-green-300' : 'bg-gray-800 text-orange-300'
-                  }`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  {categoryIcons[currentCategory] || <CodeIcon className="w-6 h-6" />}
-                  <span className="text-lg font-semibold">{skill.name}</span>
-                </motion.div>
-              ))}
+              {groupedSkills[currentCategory].map((skill) => {
+                const TechIcon : IconType  = techLogos[skill.name] || (() => null)
+                return (
+                  <motion.div
+                    key={skill.name}
+                    className={`flex flex-col items-center justify-center p-4 rounded-xl ${baseBgColor} ${baseTextColor} ${hoverBgColor} transition-all duration-300 border ${borderColor} shadow-lg`}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.05, boxShadow: "0 8px 30px rgba(0, 0, 0, 0.12)" }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <div className="mb-3">
+                    <TechIcon size="40"/>
+                    </div>
+                    <span className="text-sm font-medium text-center">{skill.name}</span>
+                  </motion.div>
+                )
+              })}
             </motion.div>
           </motion.div>
         </AnimatePresence>
@@ -111,29 +106,26 @@ export default function SkillsSection({ theme }: { theme: 'retro' | 'sunset' }) 
         <Button
           onClick={prevPage}
           disabled={currentPage === 1}
-          variant="ghost"
+          variant="outline"
           size="icon"
-          className={`rounded-full transition-all transform hover:scale-110 ${
-            theme === 'retro' ? 'text-white bg-green-600 hover:bg-green-700' : 'text-white bg-orange-600 hover:bg-orange-700'
-          }`}
+          className={`rounded-full transition-all ${baseTextColor} ${hoverBgColor} border-2 ${borderColor}`}
         >
-          <ChevronLeft className="h-5 w-5" />
+          <ChevronLeft className="h-6 w-6" />
         </Button>
-        <span className={`text-lg font-semibold px-6 py-2 rounded-full shadow-md ${theme === 'retro' ? 'bg-green-900 text-green-300' : 'bg-orange-900 text-orange-300'}`}>
+        <span className={`text-lg font-medium ${baseTextColor}`}>
           {currentPage} / {maxPage}
         </span>
         <Button
           onClick={nextPage}
           disabled={currentPage === maxPage}
-          variant="ghost"
+          variant="outline"
           size="icon"
-          className={`rounded-full transition-all transform hover:scale-110 ${
-            theme === 'retro' ? 'text-white bg-green-600 hover:bg-green-700' : 'text-white bg-orange-600 hover:bg-orange-700'
-          }`}
+          className={`rounded-full transition-all ${baseTextColor} ${hoverBgColor} border-2 ${borderColor}`}
         >
-          <ChevronRight className="h-5 w-5" />
+          <ChevronRight className="h-6 w-6" />
         </Button>
       </motion.div>
     </div>
   )
 }
+
