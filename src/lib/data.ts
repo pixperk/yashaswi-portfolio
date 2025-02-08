@@ -1,6 +1,15 @@
 export const projects = [
   { 
     id: 1, 
+    title: 'UptimeX', 
+    description: 'A server monitoring SaaS that tracks HTTP, TCP, or DB servers and sends alerts when servers are down or back up. Also monitors SSL certificates with custom notification options.', 
+    image: '/uptimex.png?height=100&width=100', 
+    github: 'https://github.com/pixperk/uptimex-server', 
+    live: 'https://uptimex.onrender.com',
+    techStack: 'Next.js, Node.js, GraphQL, PostgreSQL, Sequelize, WebSockets (GraphQL Subscriptions), TypeScript, Tailwind CSS'
+  },
+  { 
+    id: 2, 
     title: 'PingPanda', 
     description: 'A real-time SaaS monitoring app that delivers alerts directly to your Discord.',
     image: '/pingPanda.png?height=100&width=100', 
@@ -9,7 +18,7 @@ export const projects = [
     techStack: 'Next.js, Hono (Backend Framework), Tailwind CSS, ShadCN, PostgreSQL, Prisma ORM, React Query, Stripe Integration'
   },
   {
-    id: 2,
+    id: 3,
     title: "Quill",
     description: "A SaaS platform enabling users to chat with AI using the context of their uploaded PDFs. Built with a focus on performance, usability, and clean design.",
     image: "/quill.png?height=100&width=100",
@@ -17,9 +26,8 @@ export const projects = [
     live: "https://quill-two-ochre.vercel.app/",
     techStack: "Next.js, tRPC, Tailwind CSS, shadcn-ui, Prisma ORM, Pinecone, LangChain, Stripe, Zod, Kinde, TypeScript"
   },
-  
   {
-    id: 3,
+    id: 4,
     title: "EcoCart",
     description: "A collaborative eco-friendly shopping app designed to create AI-powered shopping lists, track environmental impact, and make sustainable choices easier.",
     image: "/ecoCart.png?height=100&width=100",
@@ -28,18 +36,16 @@ export const projects = [
     techStack: "Next.js (Frontend & Backend), Prisma ORM, PostgreSQL, Tailwind CSS, shadcn-ui",
   },
   {
-    id: 4,
+    id: 5,
     title: 'Bud Auction',
     description: 'A dynamic auction platform where users can place bids, track auctions in real-time, and receive notifications for bid updates. Features include bid validation, real-time updates, and user-friendly design.',
     image: '/budauction.png?height=100&width=100',
     github: 'https://github.com/pixperk/bud-auction',
     live: 'https://bud-auction.vercel.app/',
     techStack: 'Next.js, TypeScript, Drizzle, PostgreSQL, Tailwind CSS, Knock Workflow, Vercel'
-  }
-  ,
-
+  },
   {
-    id: 5,
+    id: 6,
     title: 'ChatSwift',
     description: 'A full stack real-time chat app focused on speed and usability with Upstash Redis.',
     image: '/chatswift.png?height=100&width=100',
@@ -48,6 +54,7 @@ export const projects = [
     techStack: 'Next.js 14, Upstash Redis, React, TypeScript, Tailwind CSS'
   }
 ];
+
 
 
 export const skills = [
