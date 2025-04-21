@@ -35,6 +35,8 @@ export type Education = {
 
 export type Blog = {
   id: number;
+  minutesRead: number;
+  thumbnail: string;
   title: string;
   excerpt: string;
   link: string;

@@ -1,5 +1,14 @@
 export const projects = [
   { 
+    id: 0, 
+    title: 'Redis in Rust', 
+    description: 'A high-performance Redis clone built from scratch in Rust, focusing on understanding Redis internals and Rust patterns.',
+    image: 'https://raw.githubusercontent.com/pixperk/redis_in_rust/refs/heads/main/assets/banner.png', 
+    github: 'https://github.com/pixperk/redis_in_rust', 
+    live: 'https://github.com/pixperk/redis_in_rust',
+    techStack: 'Rust, Tokio'
+  },
+  { 
     id: 1, 
     title: 'UptimeX', 
     description: 'A server monitoring SaaS that tracks HTTP, TCP, or DB servers and sends alerts when servers are down or back up. Also monitors SSL certificates with custom notification options.', 
@@ -57,12 +66,14 @@ export const projects = [
 
 
 
+
 export const skills = [
   // Languages
   { name: 'TypeScript', category: 'Languages' },
   { name: 'JavaScript', category: 'Languages' },
   { name: 'Node.js', category: 'Languages' },
   { name: 'Rust', category: 'Languages' },
+  { name: 'Go', category: 'Languages' },
   { name: 'C/C++', category: 'Languages' },
   { name: 'Java', category: 'Languages' },
 
@@ -107,14 +118,19 @@ export const education = [
 export const blogs = [
   {
     id: 1,
-    title: 'What is Serverless Architecture',
-    excerpt: 'If you just want to write code and do not want to worry about infrastructure and scaling - use serverless architecture.',
-    link: 'https://x.com/PixPerk_/status/1845452581058822238',
+    thumbnail : 'https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fymilpoz9e8m8r3l7yjia.png',
+    title: `Don't Cry about Pointers anymore`,
+    minutesRead: 12,
+    excerpt: 'Deep Dive with C, Go and Rust',
+    link: 'https://dev.to/pixperk/dont-cry-about-pointers-anymore-deep-dive-with-c-go-and-rust-3jhk',
   },
   {
     id: 2,
-    title: `Understanding JavaScript's Prototype Inheritance`,
-    excerpt: `Understanding JavaScript's Prototype Inheritance: An Interactive Guide 🧵`,
-    link: 'https://x.com/PixPerk_/status/1818360375437295827',
+    thumbnail : 'https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F5rgzuo6bs45szhtlbwsi.png',
+    title: `Learn gRPC COMPLETELY from Unary to Bi-directional RPCs`,
+    minutesRead: 9,
+    excerpt: `By building a mini Exam Service in GoLang`,
+    link: 'https://dev.to/pixperk/learn-grpc-completely-from-unary-to-bi-directional-rpcs-2dnl',
   },
+  
 ]
