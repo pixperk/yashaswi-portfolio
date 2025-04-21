@@ -112,7 +112,7 @@ const IntroSection = ({ setActiveSection, theme = "retro" }: IntroProps) => {
 
             <motion.div variants={itemVariants}>
               <p className={`text-gray-300 text-base sm:text-lg mb-8 leading-relaxed ${styles.font}`}>
-                I&apos;m comfortable across Go, Rust, and TypeScript - building structured, maintainable systems. Whether it's crafting APIs, working with distributed systems, or writing low-level logic, I bring a strong foundation and a hunger to learn fast and ship even faster.
+                I&apos;m comfortable across Go, Rust, and TypeScript - building structured, maintainable systems. Whether it&apos;s crafting APIs, working with distributed systems, or writing low-level logic, I bring a strong foundation and a hunger to learn fast and ship even faster.
               </p>
             </motion.div>
 
