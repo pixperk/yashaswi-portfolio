@@ -118,6 +118,14 @@ export const education = [
 export const blogs = [
   {
     id: 1,
+    thumbnail : 'https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Feu8a4uc889ghppzloq6v.png',
+    title: `Go Concurrency`,
+    minutesRead: 21,
+    excerpt: 'The Full Guide to Goroutines and Beyond',
+    link: 'https://dev.to/pixperk/go-concurrency-the-full-guide-to-goroutines-and-beyond-2ajh',
+  },
+  {
+    id: 2,
     thumbnail : 'https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fymilpoz9e8m8r3l7yjia.png',
     title: `Don't Cry about Pointers anymore`,
     minutesRead: 12,
@@ -125,7 +133,7 @@ export const blogs = [
     link: 'https://dev.to/pixperk/dont-cry-about-pointers-anymore-deep-dive-with-c-go-and-rust-3jhk',
   },
   {
-    id: 2,
+    id: 3,
     thumbnail : 'https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F5rgzuo6bs45szhtlbwsi.png',
     title: `Learn gRPC COMPLETELY from Unary to Bi-directional RPCs`,
     minutesRead: 9,
